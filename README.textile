@@ -1,0 +1,61 @@
+h1. Spree banner management tool extension
+
+
+h2. Features
+
+* Allows you to create Ad Sets and randomly display on a page.
+* Banner naming
+* Assign Ad Set to a page
+* Providing a click-through url
+* Upload Ad Banners to the Ad Set complete with drag-and-drop order sorting.
+* Included is index.rxml to provide an xml feed of all banner data in the database if you need it, or individual banners using image.rxml
+
+_Note: Assigning a banner to a page requires spree-comatose, "http://github.com/bcalloway/spree-comatose":http://github.com/bcalloway/spree-comatose, to power the CMS._
+
+h2. Requirements
+
+<p>*Spree-Comatose*<br />
+"http://github.com/bcalloway/spree-comatose":http://github.com/bcalloway/spree-comatose</p>
+
+<p>*Imagemagick*<br />
+"http://www.imagemagick.org/script/index.php":http://www.imagemagick.org/script/index.php</p>
+
+<p>*Gems/Plugins*<br /> 
+Paperclip, "http://github.com/thoughtbot/paperclip/tree/master":http://github.com/thoughtbot/paperclip/tree/master<br />
+Rmagick, "http://rmagick.rubyforge.org":http://rmagick.rubyforge.org</p>
+
+h2. How to Install
+
+Place the banner extension in vendor/extensions/
+<pre><code>
+  git://github.com/bcalloway/spree-banners.git vendor/extensions/banners
+</code></pre>
+
+Run the migration of the Banner extension
+<pre><code>
+rake spree:extensions:banners:update
+rake db:migrate
+</code></pre>
+
+h2. Notes
+
+Be sure to vendor Paperclip in environment.rb
+<pre><code>
+config.gem 'thoughtbot-paperclip',
+           :lib => 'paperclip',
+           :source => 'http://gems.github.com'
+</code></pre>
+
+<p>By default, the tool picks an Ad Set and their associated Ad Banners at random, based on the page assigned.</p>
+
+To place a single 300x250 banner on a page, call the <code>show_banners</code> helper, passing the position and number of banners to display:
+<pre><code>
+  = show_banners("sidebar", 1)
+</code></pre>
+
+To place smaller 158x90 sponsor banners:
+<pre><code>
+  = show_banners("footer", 4)
+</code></pre>
+
+Copyright (c) 2010 Brandon Calloway, released under the MIT License

@@ -1,0 +1,10 @@
+xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
+xml.banners(:shownumbers => "false", :slidedelay => "5", :transitiontime =>"1"){
+  xml.ads{
+    for banner in @banners
+      for ad in banner.banner_images
+        xml.ad(:url => ad.ad.url, :click_thru => ad.url)
+      end
+    end
+  }
+}
